@@ -1,0 +1,103 @@
+export const initialState = {
+    basket: [],
+};
+
+const addProductToCart = (product, state) => {
+    console.log("adding product", product);
+    const updatedCart = [...state.basket];
+    const updatedItemIndex = updatedCart.findIndex(
+        item => item.id === product.id
+    );
+
+    if (updatedItemIndex < 0) {
+        updatedCart.push({ ...product, quantity: 1 });
+    } else {
+        const updatedItem = {
+            ...updatedCart[updatedItemIndex]
+        };
+        updatedItem.quantity++;
+        updatedCart[updatedItemIndex] = updatedItem;
+    }
+
+    return { ...state, basket: updatedCart };
+};
+
+const removeProductFromCart = (productId, state) => {
+    console.log("remove product: " + productId);
+    const updatedCart = [...state.basket];
+    const updatedItemIndex = updatedCart.findIndex(item => item.id === productId);
+
+    const updatedItem = {
+        ...updatedCart[updatedItemIndex]
+    };
+    updatedItem.quantity--;
+    if (updatedItem.quantity <= 0) {
+        updatedCart.splice(updatedItemIndex, 1);
+    } else {
+        updatedCart[updatedItemIndex] = updatedItem;
+    }
+
+    return { ...state, basket: updatedCart };
+};
+
+const addQuantity = (productId, state) => {
+    const updatedCart = [...state.basket];
+    const updatedItemIndex = updatedCart.findIndex(
+        item => item.id === productId
+    );
+    if (updatedItemIndex < 0) {
+        return;
+    } else {
+        const updatedItem = {
+            ...updatedCart[updatedItemIndex]
+        };
+        updatedItem.quantity++;
+        updatedCart[updatedItemIndex] = updatedItem;
+    }
+    return { ...state, basket: updatedCart };
+}
+
+
+const decreasequantity = () => {
+
+}
+
+
+export const reducer = (state, action) => {
+    console.log(action);
+    console.log(action.id);
+    switch (action.type) {
+        case 'ADD_TO_BASKET':
+            gettotalvalue(state.basket)
+            return addProductToCart(action.item, state);
+        case 'REMOVE_FROM_BASKET':
+            return removeProductFromCart(action.id, state)
+
+        case "ADD_QUANTITY":
+            return addQuantity(action.id, state)
+
+        case 'EMPTY_BASKET':
+            return {
+                ...state,
+                basket: []
+            }
+        default:
+            return state;
+    }
+};
+
+
+
+// selectors
+export const gettotalvalue = (products) => {
+    const total = products.reduce((accumulator, current) => accumulator + current.price * current.quantity, 0)
+    return total
+}
+export const totalitems = (products) => {
+    const totalitem = products.reduce((accumulator, current) => accumulator + current.quantity, 0)
+    return totalitem
+}
+
+
+
+export default reducer;

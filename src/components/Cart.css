@@ -1,0 +1,32 @@
+.cart {
+    width: 80%;
+    min-height: 500px;
+    background-color: white;
+    margin: 10px auto;
+    height: max-content;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.cart_heading {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 10px;
+}
+
+.cart_items {
+    padding: 10px;
+}
+
+.subtotal {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.subtotal div {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+}

@@ -1,0 +1,36 @@
+.compcard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    height: 400px;
+    margin: 50px;
+    border: 1px solid grey;
+    border-radius: 8px;
+    padding: 18px;
+    transform: scale(1);
+    transition: .5s;
+    box-shadow: 2px 2px 4px gray;
+}
+
+.compcard:hover {
+    transform: scale(1.1);
+    box-shadow: 4px 4px 12px gray;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.add_cart {
+    border: none;
+    padding: 10px;
+
+    background-color: rgb(238, 171, 45);
+}
+
+.add_cart:hover {
+    background-color: rgb(194, 130, 11);
+}
